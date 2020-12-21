@@ -1,15 +1,18 @@
 const express = require('express')
-const app = express()
-
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-require('dotenv/config')
+require('dotenv/config');
+const app = express()
 app.use(bodyParser.json())
+ 
+const userController = require('./controllers/userController')
 
-const userController = require('./controller/userController')
+console.log("*** NODE JS APP STARTED ***")
 
-app.get('/', (req, res, next)=>{
+app.get('/home', (req, res, next) => {
+
     res.send("Home page")
+
 })
 
 mongoose.connect(process.env.DB_CONNECT,{ useNewUrlParser: true },).then(() => {
